@@ -1,0 +1,20 @@
+const func = (expresion) => {
+  const array = expresion.split("");
+  const newArr = [];
+  for (let index = 0; index < array.length; index++) {
+    const sign = array[index];
+    if (sign === "(" || sign === "[") {
+      newArr.push(sign);
+    } else if (sign === ")" || sign === "]") {
+      const last = newArr.pop();
+
+      if ((sign === ")" && last !== "(") || (sign === "]" && last !== "[")) {
+        return false;
+      }
+    }
+  }
+  return newArr.length ? false : true;
+};
+
+const res = func("((())[)");
+console.log(res);
